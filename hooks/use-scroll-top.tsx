@@ -14,9 +14,9 @@ export const useScrollTop = (threshold = 10) => {
         }
 
 
-        window.addEventListener('Scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
         return () => {
-            window.removeEventListener('Scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         }
     }, [threshold])
 
