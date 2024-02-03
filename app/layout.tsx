@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/theme-providers";
 
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "Notion-Clone",
@@ -14,8 +17,8 @@ export const metadata: Metadata = {
       },
       {
         media: '(prefers-color-scheme: dark)',
-        url: '/logo.png',
-        href: '/logo.png'
+        url: '/logo-dark.png',
+        href: '/logo-dark.png'
       }
     ]
   }
@@ -27,9 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider 
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="notion-theme">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
