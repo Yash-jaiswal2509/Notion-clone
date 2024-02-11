@@ -29,17 +29,7 @@ interface ItemProps {
     icon: LucideIcon;
 };
 
-export const Item = ({
-    id,
-    label,
-    onClick,
-    icon: Icon,
-    active,
-    documentIcon,
-    isSearch,
-    level = 0,
-    onExpand,
-    expanded,
+export const Item = ({ id, label, onClick, icon: Icon, active, documentIcon, isSearch, level = 0, onExpand, expanded,
 }: ItemProps) => {
     const { user } = useUser();
     const router = useRouter();
