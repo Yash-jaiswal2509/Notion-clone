@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-providers";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { Toaster } from "sonner";
 import { ModalProvider } from "@/components/providers/modal-providers";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,13 +16,13 @@ export const metadata: Metadata = {
     icon: [
       {
         media: '(prefers-color-scheme: light)',
-        url: '/logo.png',
-        href: '/logo.png'
+        url: '/logo-dark.png',
+        href: '/logo-dark.png'
       },
       {
         media: '(prefers-color-scheme: dark)',
-        url: '/logo-dark.png',
-        href: '/logo-dark.png'
+        url: '/logo.png',
+        href: '/logo.png'
       }
     ]
   }
@@ -35,18 +36,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="notion-theme">
-            <Toaster position="bottom-center" />
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
-        </ConvexClientProvider>
+        <EdgeStoreProvider>
+          <ConvexClientProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="notion-theme">
+              <Toaster position="bottom-center" />
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </ConvexClientProvider>
+        </EdgeStoreProvider>
       </body>
     </html>
   );
