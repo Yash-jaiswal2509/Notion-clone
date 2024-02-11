@@ -23,7 +23,7 @@ export const SettingsModal = () => {
                             Appearance
                         </Label>
                         <span className='text-[0.8rem] text-muted-foreground'>
-                            Customize Notion's Appearance
+                            Customize Notion&apos;s Appearance
                         </span>
                     </div>
                     <ModeToggle />
